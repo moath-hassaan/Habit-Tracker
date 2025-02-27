@@ -1,7 +1,3 @@
-# Habit-Tracker
-
-
-
 # Habit Tracker
 
 A Python-based habit tracking application with CLI, analytics, and SQLite persistence.
@@ -14,7 +10,7 @@ A Python-based habit tracking application with CLI, analytics, and SQLite persis
    cd habit-tracker
 
 
-   Install dependencies:
+   Install dependencies: pip install -r requirements.txt
 
 bash
 Copy
