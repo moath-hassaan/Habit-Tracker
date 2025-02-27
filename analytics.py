@@ -21,6 +21,7 @@ def calculate_streak(completions: List[datetime], periodicity: str) -> int:
             current_streak = 1
     return max(max_streak, current_streak)
 
+
 def longest_streak_all(habits: List[Habit]) -> int:
     """Longest streak across all habits."""
     streaks = [calculate_streak(h.completions, h.periodicity) for h in habits]

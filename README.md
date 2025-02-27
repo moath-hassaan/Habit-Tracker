@@ -23,12 +23,14 @@ Seed sample data:
 
 bash
 Copy
-python -m src.seed
+python -m seed
+python seed.py
+bat file
 
 
 
 
-python -m src.cli [COMMAND]
+python -m cli [COMMAND]
 
 Commands:
   create     Create a new habit
@@ -47,4 +49,4 @@ Commands:
 - **Error Handling**: Input validation in CLI commands (e.g., periodicity checks).
 - **Extensibility**: Easy to add new features like GUI or web interfaces.
 
-Run the CLI with `python -m src.cli` and follow the prompts!
+Run the CLI with `python -m cli` and follow the prompts!

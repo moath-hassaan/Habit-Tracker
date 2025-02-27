@@ -1,7 +1,7 @@
 import click
 from habit import Habit
-from database import load_habits, save_habit, initialize_db
-from analytics import filter_by_periodicity, longest_streak_all
+from database import load_habits, save_habit, initialize_db, load_habit
+from analytics import filter_by_periodicity, longest_streak_all, calculate_streak
 
 @click.group()
 def cli():
@@ -38,12 +38,21 @@ def list_habits():
         click.echo(f'{habit.name} ({habit.periodicity})')
 
 @cli.command()
-def analyze():
+@click.option('--name', default=None, help='Analyze a specific habit by name (optional)')
+def analyze(name):
     """Display analytics."""
-    habits = load_habits()
-    click.echo(f'Longest streak overall: {longest_streak_all(habits)}')
-    daily = filter_by_periodicity(habits, 'daily')
-    click.echo(f'Daily habits: {[h.name for h in daily]}')
+    if name:
+        habit = load_habit(name)
+        if habit:
+            click.echo(f'Habit "{habit.name}" has a streak of {calculate_streak(habit.completions, habit.periodicity)} days.')
+        else:
+            click.echo(f'Habit "{name}" not found!')
+    else:
+        habits = load_habits()
+        click.echo(f'Longest streak overall: {longest_streak_all(habits)}')
+        daily = filter_by_periodicity(habits, 'daily')
+        click.echo(f'Daily habits: {[h.name for h in daily]}')
 
+        
 if __name__ == '__main__':
     cli()
